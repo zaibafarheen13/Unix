@@ -1,0 +1,38 @@
+ch="y"
+while [ $ch = "y" ]
+do 
+	echo "Arthimetic Calculator"
+	echo "1.Addition"
+	echo "2.Subtraction"
+	echo "3.Multiplication"
+	echo "4.Division"
+	echo "5.Modulus"
+	echo "6.Exit"
+	echo "Enter the choice"
+	read m
+	echo "Enter the value of a"
+	read a
+	echo "Enter the value of b"
+	read b
+	case $m in
+		1) echo "Addition"
+		   sum=`expr $a + $b`
+		   echo "Added value is $sum";;
+		2) echo "Subtraction"
+		   diff=`expr $a - $b`
+		   echo "Subtracted value is $diff";;
+		3) echo "Multiplication"
+		   mul=`expr $a \* $b`
+		   echo "Multiplied value is $mul";;
+		4) echo "Division"
+		   div=`expr $a / $b`
+		   echo "Divided value is $div";;
+		5) echo "Modulus"
+		   mod=`expr $a % $b`
+		   echo "Remainder value is $mod";;
+		6) echo "Exit"
+		   exit;;
+	esac
+	echo "Do you want to continue"
+	read ch
+done
