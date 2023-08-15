@@ -1,0 +1,31 @@
+tput clear
+echo "Enter the file name"
+read file
+echo "Enter the content"
+cat > file
+ch="y"
+while [ $ch = "y" ]
+do
+	echo "1. Replace"
+	echo "2. Delete"
+	echo "3. Exit"
+	echo "Enter the choice from menu"
+	read m
+	case $m in
+		1) echo "Enter the old pattern"
+		   read old
+	           echo "Enter the new pattern"
+		   read new
+		   tr -s $old $new < $file;;
+
+		2) echo "Enter the pattern to delete"
+		   read dpat
+		   tr -d $dpat < $file;;
+		   
+		3) exit;;
+	esac
+	echo "Do you want to continue"
+	read ch
+done
+		   
+
