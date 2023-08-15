@@ -1,0 +1,34 @@
+tput clear
+ch="y"
+while [ $ch = "y" ]
+do
+	echo "1. Decimal to Binary Conversion"
+	echo "2. Binary to Decimal Conversion"
+	echo "3. Exit"
+	echo "Enter the choice from menu"
+	read m
+	case $m in
+		1) echo "Decimal to Binary"
+		   echo "Enter the Decimal Number"
+		   read num
+		   bin=0
+		   while [ $num != 0 ]
+		   do
+		   	rem=$(($num%2))
+			num=$(($num/2))
+			bin=$rem$bin
+		   done
+		   bin=$(($bin/10))
+		   echo "Binary Number is $bin";;
+
+		   2) echo "Binary to Decimal"
+		      echo "Enter the Binary Number"
+		      read bin
+		      dec=0
+		      dec=`expr "obase=10; ibase=2; $bin" | bc`
+		      echo "Decimal Number is $dec";;
+		   3) exit;;
+	esac
+	echo "Do you want to continue"
+	read ch
+done
