@@ -1,0 +1,43 @@
+ch="y"
+while [ $ch = "y" ]
+do
+	echo "1. Convert lowercase to uppercase"
+	echo "2. Arranging content of the file"
+	echo "3. Exit"
+	echo "Enter the choice from the menu"
+	read m
+	case $m in
+		1) echo "Convert lowercase to uppercase"
+		   echo "Enter the filename"
+		   read filename
+		   echo -e "\n Before Converting"
+		   echo "~~~~~~~~~~~~~~~~~~~~~~~"
+		   cat $filename
+		   echo -e "\n After Converting"
+		   echo "~~~~~~~~~~~~~~~~~~~~~~"
+		   tr '[a-z]' '[A-Z]' < $filename;;
+
+		2) echo "Arranging content of the file"
+		   echo "Enter the filename"
+		   read filename
+		   echo "Check sorted or not"
+		   echo "~~~~~~~~~~~~~~~~~~~"
+		   sort -c $filename
+		   echo -e "\n Before Arranging"
+		   echo "~~~~~~~~~~~~~~~~~~~~~~"
+		   cat $filename
+
+		   echo -e "\n Ascending order"
+		   echo "~~~~~~~~~~~~~~~~~~~~"
+		   sort -d $filename
+
+		   echo -e "\n Descending order"
+		   echo "~~~~~~~~~~~~~~~~~~~~~~"
+		   sort -r $filename;;
+
+		3) exit;;
+	esac
+	echo "Do you want to continue"
+	read ch
+done
+
