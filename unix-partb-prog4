@@ -1,0 +1,58 @@
+tput clear
+ch="y"
+while [ $ch = "y" ]
+do
+	echo "Electricity Bill Generation"
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	echo "1. Enter the Customer Details"
+	echo "2. Bill Generation"
+	echo "3. Exit"
+	echo "Enter the choice from the menu"
+	read m
+	case $m in
+		1) echo "Customer Details"
+		   echo "Enter the Meter Number"
+		   read mno
+		   echo "Enter the Customer Name"
+		   read name
+		   echo "Enter the Customer Address"
+		   read addr
+		   echo $mno : $name : $addr >> Customer.txt;;
+
+		2) echo "Enter the Meter Number"
+		   read mno
+		   name=`grep "^$mno" Customer.txt | cut -d ":" -f2`
+		   echo $name
+		   addr=`grep "^$mno" Customer.txt | cut -d ":" -f3`
+		   echo $addr
+		   echo "Enter last month reading"
+		   read lmr
+		   echo "Enter cuurent month reading"
+		   read cmr
+		   unit=$(($cmr-$lmr))
+		   if [ $unit -ge 200 ]
+		   then
+		   	amt=$(($unit*5))
+		   elif [ $unit -lt 200 ] && [ $unit -ge 100 ]
+		   then
+		   	amt=$(($unit*2))
+		   else
+		   	amt=$unit
+		   fi
+
+		   echo "Electricity Bill Generation"
+		   echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+		   echo "Customer Meter Number		: $mno"
+		   echo "Customer Name			: $name"
+		   echo "Address				: $addr"	
+		   echo "Last Month Reading		: $lmr"
+		   echo "Current Month Reading		: $cmr"
+		   echo "No of Units			: $unit"
+		   echo "Unit Charges			: $amt"
+		   echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";;
+
+		3) exit;;
+	esac 
+	echo "Do you want to continue"
+	read ch
+done
