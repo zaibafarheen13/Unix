@@ -1,0 +1,30 @@
+tput clear
+ch="y"
+while [ $ch = "y" ]
+do
+	echo "1. Check the user is logged in or not"
+	echo "2. Send Mail"
+	echo "3. Exit"
+	echo "Enter the choice from menu"
+	read m
+	case $m in
+		1) echo "Check the user is logged in or not"
+		   echo "Enter the user id"
+		   read uid
+		   if [ $? = 0 ]
+		   then
+		   	echo "$uid is logged in"
+		   else
+		   	echo "$uid is not logged in"
+		   fi;;
+		2) echo "Send Mail"
+		   echo "Enter the user id"
+		   read uid
+		   echo "Enter the message"
+		   write $uid
+		   echo "Message is sent";;
+		3) exit;;
+	esac
+	echo "Do you want to continue"
+	read ch
+done
