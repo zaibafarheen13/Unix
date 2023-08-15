@@ -1,0 +1,56 @@
+ch="y"
+while [ $ch = "y" ]
+do
+	echo "Ten Unix Commands"
+	echo "1.Calender"
+	echo "2.Date"
+	echo "3.Path"
+	echo "4.Shell"
+	echo "5.ID"
+	echo "6.Termina Name"
+	echo "7.Setting of Terminal"
+	echo "8.Print Working Directory"
+	echo "9.Word Count"
+	echo "10.Basic Calculator"
+	echo "11.Exit"
+	echo "Enter the choice"
+	read m
+	case $m in
+		1) echo "calendar"
+		   echo "Enter the month"
+		   read mon
+		   echo "Enter the year"
+		   read year
+		   cal $mon $year;;
+		2) echo "Date"
+		   date;;
+		3) echo "PATH"
+		   echo $PATH;;
+		4) echo "SHELL"
+		   echo $SHELL;;
+		5) echo "ID of the user"
+		   id;;
+		6) echo "Terminal Name"
+		   tty;;
+		7) echo "Setting of the Terminal"
+		   stty;;
+		8) echo "Print Working Directory"
+		   pwd;;
+		9) echo "Word Count"
+		   echo "Enter the filename"
+		   read file
+		   echo "Enter the content of the file"
+		   cat > $file
+		   echo "Display the file"
+		   cat $file
+		   echo "word count"
+		   wc $file;;
+		10) echo "Basic Calculator"
+		    bc;;
+		11) echo "Exit"
+		exit;;
+	esac
+	echo "Do you want to continue"
+	read ch
+done
+		 
