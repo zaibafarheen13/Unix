@@ -1,0 +1,48 @@
+
+tput clear
+ch="y"
+while [ $ch = "y" ]
+do
+	echo "Basic Salary"
+	echo "1. Entry of Employee details"
+	echo "2. Display"
+	echo "3. Exit"
+	echo "Enter the choice"
+	read m
+	case $m in
+		1) echo "Enter the Employee ID:"
+		   read num
+		   echo "Enter the Name of Employee:"
+		   read name
+		   echo "Enter the Basic Salary:"
+		   read bsal
+		   if [ $bsal -lt 15000 ]
+		   then
+		   	gsal=$(($bsal+(($bsal/100)*10)+($bsal/100)*90))
+			echo "The gross salary : $gsal"
+		   fi
+		   if [ $bsal -ge 15000 ]
+		   then
+		   	gsal=$(($bsal+5000+($bsal/100)*98))
+			echo "The gross salary : $gsal"
+		   fi
+		   echo $num : $name : $bsal : $gsal >> Employee.txt;;
+
+		   2) echo "Enter the Employee ID"
+		      read num
+		      name=`grep "^$num" Employee.txt | cut -d ":" -f2`
+		      echo $name
+		      bsal=`grep "^$num" Employee.txt | cut -d ":" -f3`
+		      gross=`grep "^$num" Employee.txt | cut -d ":" -f4`
+		      echo "Name of Employee: $name"
+		      echo "Employee ID: $num"
+		      echo "Basic Salary: $bsal"
+		      echo "Gross Salary: $gross";;
+
+		   3) exit;;
+	esac
+        echo "Do you want to continue"
+	read ch
+done
+
+
